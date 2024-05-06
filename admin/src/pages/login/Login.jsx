@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import "./login.css";
 import { AuthContext } from '../../context/authContext/AuthContext.js';
-import { login } from '../../context/authContext/apicalls';
+import { login } from '../../context/authContext/apicalls.js';
 export default function Login() {
   const [email,setEmail] = useState("");
   const [password,setPassword] = useState("");
