@@ -18,7 +18,6 @@ const root = createRoot(domNode);
 root.render(
   <React.StrictMode>
     <AuthContextProvider>
-      {/* <RouterProvider router={router} /> */}
       <App />
     </AuthContextProvider>
   </React.StrictMode>
