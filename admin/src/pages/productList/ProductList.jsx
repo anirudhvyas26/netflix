@@ -3,14 +3,21 @@ import { DataGrid } from '@mui/x-data-grid';
 import { DeleteOutline } from "@mui/icons-material";
 import { productRows } from "../../dummyData";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { MovieContext } from "../../context/movieContext/MovieContext";
+import { getMovies } from "../../context/movieContext/apiCalls";
 
 export default function ProductList() {
   const [data, setData] = useState(productRows);
+  const {movies, dispatch} = useContext(MovieContext);
+  useEffect(()=>{
+getMovies(dispatch)
+  },[dispatch]);
 
   const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id));
+   // setData(data.filter((item) => item.id !== id));
   };
+console.log(movies);
 
   const columns = [
     { field: "id", headerName: "ID", width: 90 },
@@ -60,13 +67,13 @@ export default function ProductList() {
 
   return (
     <div className="productList">
-      <DataGrid
+      {/* <DataGrid
         rows={data}
         disableSelectionOnClick
         columns={columns}
         pageSize={8}
-        checkboxSelection
       />
+        checkboxSelection */}
     </div>
   );
 }
