@@ -8,11 +8,11 @@ import { MovieContext } from "../../context/movieContext/MovieContext";
 import { getMovies } from "../../context/movieContext/apiCalls";
 
 export default function ProductList() {
-  const [data, setData] = useState(productRows);
+  
   const {movies, dispatch} = useContext(MovieContext);
   useEffect(()=>{
 getMovies(dispatch)
-  },[dispatch]);
+  }, [dispatch]);
 
   const handleDelete = (id) => {
    // setData(data.filter((item) => item.id !== id));
@@ -22,29 +22,23 @@ console.log(movies);
   const columns = [
     { field: "id", headerName: "ID", width: 90 },
     {
-      field: "product",
-      headerName: "Product",
+      field: "movie",
+      headerName: "Movie",
       width: 200,
       renderCell: (params) => {
         return (
           <div className="productListItem">
             <img className="productListImg" src={params.row.img} alt="" />
-            {params.row.name}
+            {params.row.title}
           </div>
         );
       },
     },
-    { field: "stock", headerName: "Stock", width: 200 },
-    {
-      field: "status",
-      headerName: "Status",
-      width: 120,
-    },
-    {
-      field: "price",
-      headerName: "Price",
-      width: 160,
-    },
+    { field: "genre", headerName: "Genre", width: 120 },
+    {field: "year", headerName: "year", width: 120 },
+    {field: "limit", headerName: "limit", width: 120 },
+    {field: "isSerires", headerName: "isSeries", width: 120 },
+    
     {
       field: "action",
       headerName: "Action",
@@ -67,13 +61,14 @@ console.log(movies);
 
   return (
     <div className="productList">
-      {/* <DataGrid
-        rows={data}
+       <DataGrid
+        rows={movies}
         disableSelectionOnClick
         columns={columns}
         pageSize={8}
+        checkboxSelection
+        getRowId={r => r._id}
       />
-        checkboxSelection */}
     </div>
   );
 }
