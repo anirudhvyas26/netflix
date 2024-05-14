@@ -1,11 +1,11 @@
-export const getMoviesStart = () => ({
+export const getMovieStart = () => ({
   type: "GET_MOVIES_START",
 });
-export const getMoviesSuccess = (movies) => ({
+export const getMovieSuccess = (movies) => ({
   type: "GET_MOVIES_SUCCESS",
   payload: movies,
 });
-export const getMoviesFailure = () => ({
+export const getMovieFailure = () => ({
   type: "GET_MOVIES_FAILURE",
 });
 
