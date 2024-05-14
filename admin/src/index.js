@@ -2,23 +2,19 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import { AuthContextProvider } from "./context/authContext/AuthContext";
-import { createRoot } from "react-dom/client";
-import {
-  createBrowserRouter,
-  RouterProvider,
-  redirect,
-} from "react-router-dom";
-import Login from "./pages/login/Login";
-import Sidebar from "./components/sidebar/Sidebar";
-import Topbar from "./components/topbar/Topbar";
+import { MovieContextProvider } from "./context/movieContext/MovieContext";
+import { BrowserRouter as Router } from "react-router-dom";
 
 const domNode = document.getElementById("root");
-const root = createRoot(domNode);
 
-root.render(
+ReactDOM.createRoot(domNode).render(
   <React.StrictMode>
     <AuthContextProvider>
-      <App />
+      <MovieContextProvider>
+        <Router>
+          <App />
+        </Router>
+      </MovieContextProvider>
     </AuthContextProvider>
   </React.StrictMode>
 );
