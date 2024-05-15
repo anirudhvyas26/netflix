@@ -20,7 +20,7 @@ getMovies(dispatch)
 console.log(movies);
 
   const columns = [
-    { field: "id", headerName: "ID", width: 90 },
+    { field: "_id", headerName: "ID", width: 90 },
     {
       field: "movie",
       headerName: "Movie",
@@ -46,12 +46,12 @@ console.log(movies);
       renderCell: (params) => {
         return (
           <>
-            <Link to={"/product/" + params.row.id}>
+            <Link to={{pathname:"/product/" + params.row._id, movie:params.row}}>
               <button className="productListEdit">Edit</button>
             </Link>
             <DeleteOutline
               className="productListDelete"
-              onClick={() => handleDelete(params.row.id)}
+              onClick={() => handleDelete(params.row._id)}
             />
           </>
         );

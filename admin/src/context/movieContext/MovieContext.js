@@ -16,7 +16,7 @@ export const MovieContextProvider = ({ children }) => {
   return (
     <MovieContext.Provider
       value={{
-        user: state.movies,
+        movies: state.movies,
         isFetching: state.isFetching,
         error: state.error,
         dispatch,
