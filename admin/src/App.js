@@ -43,6 +43,8 @@ function App() {
               />
               <Route path="users" element={<UserList />} />
               <Route path="movies" element={<ProductList />} />
+              <Route path="product/:id" element={<Product />} />
+
             </>
           </Route>
 

@@ -1,5 +1,5 @@
 import "./productList.css";
-import { DataGrid } from '@mui/x-data-grid';
+import { DataGrid } from "@mui/x-data-grid";
 import { DeleteOutline } from "@mui/icons-material";
 import { productRows } from "../../dummyData";
 import { Link } from "react-router-dom";
@@ -8,16 +8,15 @@ import { MovieContext } from "../../context/movieContext/MovieContext";
 import { getMovies } from "../../context/movieContext/apiCalls";
 
 export default function ProductList() {
-  
-  const {movies, dispatch} = useContext(MovieContext);
-  useEffect(()=>{
-getMovies(dispatch)
+  const { movies, dispatch } = useContext(MovieContext);
+  useEffect(() => {
+    getMovies(dispatch);
   }, [dispatch]);
 
   const handleDelete = (id) => {
-   // setData(data.filter((item) => item.id !== id));
+    // setData(data.filter((item) => item.id !== id));
   };
-console.log(movies);
+  console.log(movies);
 
   const columns = [
     { field: "_id", headerName: "ID", width: 90 },
@@ -35,10 +34,10 @@ console.log(movies);
       },
     },
     { field: "genre", headerName: "Genre", width: 120 },
-    {field: "year", headerName: "year", width: 120 },
-    {field: "limit", headerName: "limit", width: 120 },
-    {field: "isSerires", headerName: "isSeries", width: 120 },
-    
+    { field: "year", headerName: "year", width: 120 },
+    { field: "limit", headerName: "limit", width: 120 },
+    { field: "isSerires", headerName: "isSeries", width: 120 },
+
     {
       field: "action",
       headerName: "Action",
@@ -46,7 +45,10 @@ console.log(movies);
       renderCell: (params) => {
         return (
           <>
-            <Link to={{pathname:"/product/" + params.row._id, movie:params.row}}>
+            <Link
+              to={{ pathname: "/product/" + params.row._id }}
+              state={{ movie: params.row }}
+            >
               <button className="productListEdit">Edit</button>
             </Link>
             <DeleteOutline
@@ -61,13 +63,13 @@ console.log(movies);
 
   return (
     <div className="productList">
-       <DataGrid
+      <DataGrid
         rows={movies}
         disableSelectionOnClick
         columns={columns}
         pageSize={8}
         checkboxSelection
-        getRowId={r => r._id}
+        getRowId={(r) => r._id}
       />
     </div>
   );
