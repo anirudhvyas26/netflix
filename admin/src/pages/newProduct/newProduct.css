@@ -1,5 +1,5 @@
 .newProduct {
-  flex: 4;
+  flex: 3;
 }
 
 .addProductForm {
@@ -9,7 +9,7 @@
 }
 
 .addProductItem {
-  width: 250px;
+  width: 300px;
   display: flex;
   flex-direction: column;
   margin-bottom: 10px;
