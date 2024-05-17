@@ -12,5 +12,3 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const storage = firebase.storage();
 export default storage;
-
-// this file was not added
