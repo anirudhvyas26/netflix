@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./newProduct.css";
+import { createMovie } from "../../context/movieContext/apiCalls";
 import storage from "../../firebase";
 
 export default function NewProduct() {
@@ -16,6 +17,7 @@ export default function NewProduct() {
   };
 
   const upload = (items) => {
+    console.log("items", items);
     items.forEach((item) => {
       const uploadTask = storage.ref(`/items/${item.file.name}`).put(item);
       uploadTask.on(
@@ -33,7 +35,7 @@ export default function NewProduct() {
             setMovie((prev) => {
               return { ...prev, [item.label]: url };
             });
-            setUploaded((prev) => prev +1);
+            setUploaded((prev) => prev + 1);
           });
         }
       );
@@ -53,7 +55,6 @@ export default function NewProduct() {
     e.preventDefault();
     createMovie(movie, dispatch);
   };
-  console.log(movie);
   return (
     <div className="newProduct">
       <h1 className="addProductTitle">New Movie</h1>
@@ -144,7 +145,9 @@ export default function NewProduct() {
           <input type="file" onChange={(e) => setVideo(e.target.files[0])} />
         </div>
         {uploaded === 5 ? (
-          <button className="addProductButton" onClick={handleSubmit}>Create</button>
+          <button className="addProductButton" onClick={handleSubmit}>
+            Create
+          </button>
         ) : (
           <button className="addProductButton" onClick={handleUpload}>
             upload
