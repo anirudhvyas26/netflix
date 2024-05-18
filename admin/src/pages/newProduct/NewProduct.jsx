@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./newProduct.css";
 import { createMovie } from "../../context/movieContext/apiCalls";
 import storage from "../../firebase";
-
+import { createMovie } from "../../context/movieContext/apiCalls";
+import { MovieContext } from "../../context/movieContext/MovieContext";
 export default function NewProduct() {
   const [movie, setMovie] = useState(null);
   const [img, setImg] = useState(null);
@@ -11,6 +12,7 @@ export default function NewProduct() {
   const [trailer, setTrailer] = useState(null);
   const [video, setVideo] = useState(null);
   const [uploaded, setUploaded] = useState(0);
+  const {dispatch} = useContext(MovieContext)
   const handleChange = (e) => {
     const value = e.target.value;
     setMovie({ ...movie, [e.target.name]: value });
@@ -19,9 +21,10 @@ export default function NewProduct() {
   const upload = (items) => {
     console.log("items", items);
     items.forEach((item) => {
+      const filename =new Date().getTime()  + item.label + item.file.name;
       const uploadTask = storage.ref(`/items/${item.file.name}`).put(item);
       uploadTask.on(
-        "state_changes",
+        "state_changed",
         (snapshot) => {
           const progress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
