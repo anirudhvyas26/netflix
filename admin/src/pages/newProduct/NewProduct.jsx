@@ -2,7 +2,6 @@ import { useContext, useState } from "react";
 import "./newProduct.css";
 import { createMovie } from "../../context/movieContext/apiCalls";
 import storage from "../../firebase";
-import { createMovie } from "../../context/movieContext/apiCalls";
 import { MovieContext } from "../../context/movieContext/MovieContext";
 export default function NewProduct() {
   const [movie, setMovie] = useState(null);
@@ -12,7 +11,7 @@ export default function NewProduct() {
   const [trailer, setTrailer] = useState(null);
   const [video, setVideo] = useState(null);
   const [uploaded, setUploaded] = useState(0);
-  const {dispatch} = useContext(MovieContext)
+  const { dispatch } = useContext(MovieContext);
   const handleChange = (e) => {
     const value = e.target.value;
     setMovie({ ...movie, [e.target.name]: value });
@@ -21,7 +20,7 @@ export default function NewProduct() {
   const upload = (items) => {
     console.log("items", items);
     items.forEach((item) => {
-      const filename =new Date().getTime()  + item.label + item.file.name;
+      const filename = new Date().getTime() + item.label + item.file.name;
       const uploadTask = storage.ref(`/items/${item.file.name}`).put(item);
       uploadTask.on(
         "state_changed",
@@ -92,7 +91,7 @@ export default function NewProduct() {
           <input
             type="text"
             placeholder="John wick"
-            name="Title"
+            name="title"
             onChange={handleChange}
           />
         </div>
@@ -119,7 +118,7 @@ export default function NewProduct() {
           <input
             type="text"
             placeholder="Duration"
-            name="Duration"
+            name="duration"
             onChange={handleChange}
           />
         </div>
@@ -128,7 +127,7 @@ export default function NewProduct() {
           <input
             type="text"
             placeholder="Limit"
-            name="Limit"
+            name="limit"
             onChange={handleChange}
           />
         </div>
