@@ -5,7 +5,7 @@ import { productRows } from "../../dummyData";
 import { Link } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { MovieContext } from "../../context/movieContext/MovieContext";
-import { getMovies, deleteMovie } from "../../context/movieContext/apiCalls";
+import { getMovies } from "../../context/movieContext/apiCalls";
 
 export default function ProductList() {
   const { movies, dispatch } = useContext(MovieContext);
@@ -14,7 +14,7 @@ export default function ProductList() {
   }, [dispatch]);
 
   const handleDelete = (id) => {
-     deleteMovie(id,dispatch);
+    // setData(data.filter((item) => item.id !== id));
   };
   console.log(movies);
 

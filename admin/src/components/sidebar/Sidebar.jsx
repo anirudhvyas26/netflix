@@ -5,7 +5,6 @@ import {
   TrendingUp,
   PermIdentity,
   Storefront,
-  AttachMoney,
   BarChart,
   MailOutline,
   DynamicFeed,
@@ -15,7 +14,9 @@ import {
   PlayArrow,
   PlayCircleFilledOutlined,
   PlayCircleFilledWhiteOutlined,
+  FormatListBulleted,
 } from "@mui/icons-material";
+import { List } from "@mui/material";
 import { Link } from "react-router-dom";
 
 export default function Sidebar() {
@@ -56,10 +57,12 @@ export default function Sidebar() {
                 Movies
               </li>
             </Link>
+            <Link to="/lists" className="link">
             <li className="sidebarListItem">
-              <AttachMoney className="sidebarIcon" />
-              Transactions
+              <FormatListBulleted className="sidebarIcon" />
+              Lists
             </li>
+            </Link>
             <li className="sidebarListItem">
               <BarChart className="sidebarIcon" />
               Reports
