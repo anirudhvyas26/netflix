@@ -12,6 +12,7 @@ import Login from "./pages/login/Login";
 import Sidebar from "./components/sidebar/Sidebar";
 import Topbar from "./components/topbar/Topbar";
 import { MovieContextProvider } from "./context/movieContext/MovieContext";
+import { ListContextProvider } from "./context/listContext/ListContext";
 const domNode = document.getElementById("root");
 const root = createRoot(domNode);
 
@@ -19,7 +20,9 @@ root.render(
   <React.StrictMode>
     <AuthContextProvider>
     <MovieContextProvider>
-      <App />
+    <ListContextProvider> 
+  <App />
+    </ListContextProvider>
      </ MovieContextProvider>
     </AuthContextProvider>
   </React.StrictMode>

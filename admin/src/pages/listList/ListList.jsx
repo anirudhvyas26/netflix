@@ -1,42 +1,28 @@
-import "./productList.css";
+import "./listList.css";
 import { DataGrid } from "@mui/x-data-grid";
 import { DeleteOutline } from "@mui/icons-material";
-import { productRows } from "../../dummyData";
 import { Link } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
-import { MovieContext } from "../../context/movieContext/MovieContext";
-import { getMovies } from "../../context/movieContext/apiCalls";
+import { useContext, useEffect} from "react";
+import { ListContext } from "../../context/listContext/ListContext";
+import { getLists } from "../../context/listContext/apiCalls";
 
-export default function ProductList() {
-  const { movies, dispatch } = useContext(MovieContext);
+export default function ListList() {
+  const { lists, dispatch } = useContext(ListContext);
   useEffect(() => {
-    getMovies(dispatch);
+    getLists(dispatch);
   }, [dispatch]);
 
   const handleDelete = (id) => {
-    // setData(data.filter((item) => item.id !== id));
+   
   };
-  console.log(movies);
+  
 
   const columns = [
     { field: "_id", headerName: "ID", width: 90 },
-    {
-      field: "movie",
-      headerName: "Movie",
-      width: 200,
-      renderCell: (params) => {
-        return (
-          <div className="productListItem">
-            <img className="productListImg" src={params.row.img} alt="" />
-            {params.row.title}
-          </div>
-        );
-      },
-    },
     { field: "genre", headerName: "Genre", width: 120 },
-    { field: "year", headerName: "year", width: 120 },
-    { field: "limit", headerName: "limit", width: 120 },
-    { field: "isSerires", headerName: "isSeries", width: 120 },
+    { field: "title", headerName: "title", width: 120 },
+    { field: "type", headerName: "type", width: 120 },
+  
 
     {
       field: "action",
@@ -46,8 +32,8 @@ export default function ProductList() {
         return (
           <>
             <Link
-              to={{ pathname: "/product/" + params.row._id }}
-              state={{ movie: params.row }}
+              to={{ pathname: "/list/" + params.row._id, }}
+              state={{ list:params.row }}
             >
               <button className="productListEdit">Edit</button>
             </Link>
@@ -64,7 +50,7 @@ export default function ProductList() {
   return (
     <div className="productList">
       <DataGrid
-        rows={movies}
+        rows={lists}
         disableSelectionOnClick
         columns={columns}
         pageSize={8}
