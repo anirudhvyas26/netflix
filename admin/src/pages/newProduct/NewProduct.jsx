@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import "./newProduct.css";
-import storage from "../../firebase";
 import { createMovie } from "../../context/movieContext/apiCalls";
+import storage from "../../firebase";
 import { MovieContext } from "../../context/movieContext/MovieContext";
 export default function NewProduct() {
   const [movie, setMovie] = useState(null);
@@ -11,16 +11,17 @@ export default function NewProduct() {
   const [trailer, setTrailer] = useState(null);
   const [video, setVideo] = useState(null);
   const [uploaded, setUploaded] = useState(0);
-  const {dispatch} = useContext(MovieContext)
+  const { dispatch } = useContext(MovieContext);
   const handleChange = (e) => {
     const value = e.target.value;
     setMovie({ ...movie, [e.target.name]: value });
   };
 
   const upload = (items) => {
+    console.log("items", items);
     items.forEach((item) => {
       const filename =new Date().getTime()  + item.label + item.file.name;
-      const uploadTask = storage.ref(`/items/${item.file.name}`).put(item.file);
+      const uploadTask = storage.ref(`/items/${item.file.name}`).put(item);
       uploadTask.on(
         "state_changed",
         (snapshot) => {
@@ -36,7 +37,7 @@ export default function NewProduct() {
             setMovie((prev) => {
               return { ...prev, [item.label]: url };
             });
-            setUploaded((prev) => prev +1);
+            setUploaded((prev) => prev + 1);
           });
         }
       );
@@ -56,7 +57,6 @@ export default function NewProduct() {
     e.preventDefault();
     createMovie(movie, dispatch);
   };
-  console.log(movie);
   return (
     <div className="newProduct">
       <h1 className="addProductTitle">New Movie</h1>
@@ -91,7 +91,7 @@ export default function NewProduct() {
           <input
             type="text"
             placeholder="John wick"
-            name="Title"
+            name="title"
             onChange={handleChange}
           />
         </div>
@@ -118,7 +118,7 @@ export default function NewProduct() {
           <input
             type="text"
             placeholder="Duration"
-            name="Duration"
+            name="duration"
             onChange={handleChange}
           />
         </div>
@@ -127,7 +127,7 @@ export default function NewProduct() {
           <input
             type="text"
             placeholder="Limit"
-            name="Limit"
+            name="limit"
             onChange={handleChange}
           />
         </div>
@@ -147,7 +147,9 @@ export default function NewProduct() {
           <input type="file" onChange={(e) => setVideo(e.target.files[0])} />
         </div>
         {uploaded === 5 ? (
-          <button className="addProductButton" onClick={handleSubmit}>Create</button>
+          <button className="addProductButton" onClick={handleSubmit}>
+            Create
+          </button>
         ) : (
           <button className="addProductButton" onClick={handleUpload}>
             upload

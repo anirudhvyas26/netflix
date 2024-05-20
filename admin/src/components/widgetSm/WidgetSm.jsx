@@ -7,14 +7,15 @@ export default function WidgetSm() {
   useEffect(() => {
     const getNewUsers = async () => {
       try {
-
-        const res = await axios.get("http://localhost:8800/api/users?new=true", {
-          head: {
-            Authorization:
-     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MThhNzRhOGM5OTM3MGI1M2E5MmJkYSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTcxNTY5Mzc2NiwiZXhwIjoxNzE4Mjg1NzY2fQ.-PXbjC4GNjsRjjmO-ywIRsZSy7_MsCPiwQ6chxz7Agc"
-    
-          },
-        });
+        const res = await axios.get(
+          "http://localhost:8800/api/users?new=true",
+          {
+            headers: {
+              Authorization:
+                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MThhNzRhOGM5OTM3MGI1M2E5MmJkYSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTcxNTY5Mzc2NiwiZXhwIjoxNzE4Mjg1NzY2fQ.-PXbjC4GNjsRjjmO-ywIRsZSy7_MsCPiwQ6chxz7Agc",
+            },
+          }
+        );
         setNewUsers(res.data);
       } catch (err) {
         console.log(err);
