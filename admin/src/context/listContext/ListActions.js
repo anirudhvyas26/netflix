@@ -34,15 +34,15 @@ export const getListsFailure = () => ({
 //   type: "UPDATE_MOVIE_FAILURE",
 // });
 
-// export const deleteListsStart = () => ({
-//   type: "DELETE_MOVIE_START",
-// });
+export const deleteListsStart = () => ({
+  type: "DELETE_LIST_START",
+});
 
-// export const deleteListsSuccess = (id) => ({
-//   type: "DELETE_MOVIE_SUCCESS",
-//   payload: id,
-// });
+export const deleteListsSuccess = (id) => ({
+  type: "DELETE_LIST_SUCCESS",
+  payload: id,
+});
 
-// export const deleteListsFailure = () => ({
-//   type: "DELETE_MOVIE_FAILURE",
-// });
+export const deleteListsFailure = () => ({
+  type: "DELETE_LIST_FAILURE",
+});

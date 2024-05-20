@@ -4,7 +4,7 @@ import { DeleteOutline } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import { useContext, useEffect } from "react";
 import { ListContext } from "../../context/listContext/ListContext";
-import { getLists } from "../../context/listContext/apiCalls";
+import { deletelist, getLists } from "../../context/listContext/apiCalls";
 
 export default function ListList() {
   const { lists, dispatch } = useContext(ListContext);
@@ -12,13 +12,15 @@ export default function ListList() {
     getLists(dispatch);
   }, [dispatch]);
 
-  const handleDelete = (id) => {};
+  const handleDelete = (id) => {
+    deletelist(id, dispatch);
+  };
 
   const columns = [
-    { field: "_id", headerName: "ID", width: 90 },
-    { field: "genre", headerName: "Genre", width: 120 },
-    { field: "title", headerName: "title", width: 120 },
-    { field: "type", headerName: "type", width: 120 },
+    { field: "_id", headerName: "ID", width: 250 },
+    { field: "genre", headerName: "Genre", width: 200 },
+    { field: "title", headerName: "title", width: 250 },
+    { field: "type", headerName: "type", width: 200 },
 
     {
       field: "action",
