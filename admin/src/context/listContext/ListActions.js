@@ -21,18 +21,18 @@ export const getListsFailure = () => ({
 // export const createListsFailure = () => ({
 //   type: "CREATE_MOVIE_FAILURE",
 // });
-// export const updateListsStart = () => ({
-//   type: "UPDATE_MOVIE_START",
-// });
+export const updateListsStart = () => ({
+  type: "UPDATE_LIST_START",
+});
 
-// export const updateListsSuccess = (movie) => ({
-//   type: "UPDATE_MOVIE_SUCCESS",
-//   payload: movie,
-// });
+export const updateListsSuccess = (movie) => ({
+  type: "UPDATE_LIST_SUCCESS",
+  payload: movie,
+});
 
-// export const updateListsFailure = () => ({
-//   type: "UPDATE_MOVIE_FAILURE",
-// });
+export const updateListsFailure = () => ({
+  type: "UPDATE_LIST_FAILURE",
+});
 
 export const deleteListsStart = () => ({
   type: "DELETE_LIST_START",
