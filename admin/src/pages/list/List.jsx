@@ -5,8 +5,8 @@ import { productData } from "../../dummyData";
 import { Publish } from "@mui/icons-material";
 
 export default function List() {
-  const location = useLocation();
-  const list = location.list;
+  const { state } = useLocation();
+  const list = state.list;
 
   return (
     <div className="product">
@@ -17,9 +17,8 @@ export default function List() {
         </Link>
       </div>
       <div className="productTop">
-      <div className="productTopRight">
+        <div className="productTopRight">
           <div className="productInfoTop">
-            
             <span className="productName">{list.title}</span>
           </div>
           <div className="productInfoBottom">
