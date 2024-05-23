@@ -1,3 +1,5 @@
+import List from "../../pages/list/List";
+
 export const getListStart = () => ({
   type: "GET_LISTS_START",
 });
@@ -9,18 +11,18 @@ export const getListsFailure = () => ({
   type: "GET_LISTS_FAILURE",
 });
 
-// export const createListsStart = () => ({
-//   type: "CREATE_MOVIE_START",
-// });
+export const createListsStart = () => ({
+  type: "CREATE_LIST_START",
+});
 
-// export const createListsSuccess = (movie) => ({
-//   type: "CREATE_MOVIE_SUCCESS",
-//   payload: movie,
-// });
+export const createListsSuccess = (list) => ({
+  type: "CREATE_LIST_SUCCESS",
+  payload: list,
+});
 
-// export const createListsFailure = () => ({
-//   type: "CREATE_MOVIE_FAILURE",
-// });
+export const createListsFailure = () => ({
+  type: "CREATE_LIST_FAILURE",
+});
 export const updateListsStart = () => ({
   type: "UPDATE_LIST_START",
 });
