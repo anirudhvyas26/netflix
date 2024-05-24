@@ -36,7 +36,7 @@ const ListReducer = (state, action) => {
         isFetching: false,
         error: true,
       };
-    case "UPLOAD_LISTS_START":
+    case "UPLOAD_LIST_START":
       return {
         ...state,
         isFetching: true,
@@ -44,8 +44,8 @@ const ListReducer = (state, action) => {
       };
     case "UPLOAD_LIST_SUCCESS":
       return {
-        movies: state.movies.map(
-          (movie) => movie._id === action.payload._id && action.payload
+        lists: state.lists.map(
+          (list) => list._id === action.payload._id && action.payload
         ),
         isFetching: false,
         error: false,

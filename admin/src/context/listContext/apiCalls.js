@@ -1,6 +1,5 @@
 import {
   createListsFailure,
-  createListStart,
   createListsSuccess,
   deleteListsFailure,
   deleteListsStart,
@@ -29,7 +28,7 @@ export const getLists = async (dispatch) => {
   }
 };
 
-export const createList = async (list, dispatch) => {
+export const createLists = async (list, dispatch) => {
   dispatch(createListsStart());
   try {
     const res = await axios.post("/lists", list, {

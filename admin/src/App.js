@@ -58,6 +58,8 @@ function App() {
             <>
               <Route path="" element={<Home />} />
               <Route path="users" element={<UserList />} />
+              <Route path="user/:userid" element={<User />} />
+              <Route path="newuser" element={<NewUser />} />
               <Route path="movies" element={<ProductList />} />
               <Route path="product/:id" element={<Product />} />
               <Route path="newproduct" element={<NewProduct />} />

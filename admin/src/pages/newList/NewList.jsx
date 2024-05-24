@@ -4,9 +4,11 @@ import { createMovie, getMovies } from "../../context/movieContext/apiCalls";
 import storage from "../../firebase";
 import { MovieContext } from "../../context/movieContext/MovieContext";
 import { ListContext } from "../../context/listContext/ListContext";
+import { getLists,createLists } from "../../context/listContext/apiCalls";
+import { useNavigate } from "react-router-dom";
 export default function NewList() {
   const [list, setList] = useState(null);
-
+  const navigate = useNavigate();
   const { dispatch } = useContext(ListContext);
   const { movies, dispatch: dispatchMovie } = useContext(MovieContext);
   useEffect(() => {
@@ -25,6 +27,7 @@ export default function NewList() {
   const handleSubmit = (e) => {
     e.preventDefault();
     createLists(list, dispatch);
+    navigate("/lists");
   };
   return (
     <div className="newProduct">
@@ -44,7 +47,7 @@ export default function NewList() {
             <label>Genre</label>
             <input
               type="text"
-              placeholder="description"
+              placeholder="action"
               name="genre"
               onChange={handleChange}
             />
@@ -62,8 +65,7 @@ export default function NewList() {
         <div className="addProductItem">
             <label>Content</label>
             <select
-              multiple
-              name="content"
+              multiple name="content"
               onChange={handleSelect}
               style={{ height: "280px" }}
             >
@@ -72,7 +74,7 @@ export default function NewList() {
                   {movie.title}
                 </option>
               ))}
-              <option value="series">Series</option>
+      
             </select>
         </div>
           </div>
