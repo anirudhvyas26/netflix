@@ -4,36 +4,35 @@ import {
   RouterProvider,
   Route,
   redirect,
+  Navigate,
 } from "react-router-dom";
 import Home from "./home/Home";
 import "./app.scss";
 import Login from "./components/pages/watch/login/Login";
 import Register from "./components/pages/watch/register/Register";
-import Watch from "./components/pages/watch/watch";
+import Watch from "./components/pages/watch/Watch";
 import { Movie } from "@mui/icons-material";
 import { useContext } from "react";
-import { AuthContext } from "../../admin/src/context/authContext/AuthContext";
+import { AuthContext } from "./authContext/AuthContext";
 
 const App = () => {
-  const {user}=useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const router = createBrowserRouter([
     {
       path: "/",
       element: <Home />,
-      loader: async () => !user ? redirect('/register') : null
+      loader: async () => (user == "null" ? redirect("/login") : null),
     },
     {
       path: "/register",
       element: <Register />,
-      loader: async () => user ? redirect('/login') : null
-   
+      loader: async () => (user ? redirect("/login") : null),
     },
-     
+
     {
       path: "/login",
-      element: <Login />,
-      loader: async () => !user ? redirect('/register') : null
-      
+      element: user !== "null" ? <Navigate to="/" /> : <Login />,
+      // loader: async () => (!user ? redirect("/register") : null),
     },
     {
       path: "/home",
@@ -53,9 +52,7 @@ const App = () => {
     },
   ]);
 
-  return <RouterProvider
-      router={router}
-  />
+  return <RouterProvider router={router} />;
 };
 
 export default App;

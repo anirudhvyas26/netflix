@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./login.css";
-import { AuthContext } from "../../context/authContext/AuthContext.js";
+import { AuthContext } from "../../context/authContext/AuthContext.jsx";
 import { login } from "../../context/authContext/apicalls.js";
 
 export default function Login() {

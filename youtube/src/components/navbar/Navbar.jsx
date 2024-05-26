@@ -2,19 +2,19 @@ import { ArrowDropDown, Notifications, Search } from "@mui/icons-material";
 import "./navbar.scss";
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../../../../admin/src/context/authContext/AuthContext";
+import { AuthContext } from "../../authContext/AuthContext";
 import { logout } from "../../authContext/AuthActions";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const { dispatch } = useContext(AuthContext)
+  const { dispatch } = useContext(AuthContext);
   window.onscroll = () => {
     setIsScrolled(window.scrollY === 0 ? false : true);
     return () => (window.onscroll = null);
   };
-//need to understand this  ternary logic 
+  //need to understand this  ternary logic
   return (
-    <div className= {isScrolled ? "navbar scrolled" : "navbar"}>
+    <div className={isScrolled ? "navbar scrolled" : "navbar"}>
       <div className="container">
         <div className="left">
           <img
@@ -32,7 +32,6 @@ const Navbar = () => {
           </Link>
           <span>New and Popular</span>
           <span>My List</span>
-          
         </div>
         <div className="right">
           <Search className="icons" />

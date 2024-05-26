@@ -10,4 +10,13 @@ export const loginFailure = (user) => ({
 });
 export const logout = () => ({
     type: "LOGOUT",
-  });
+});
+
+export const registerStart = (user) => ({
+    type: "REGISTER_START",
+});
+
+export const registerFailureUserExists = (user) => ({
+    type: "REGISTER_FAILURE_USER_EXISTS",
+    payload: user,
+});
