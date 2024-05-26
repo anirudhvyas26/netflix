@@ -11,9 +11,11 @@ import Login from "./components/pages/watch/login/Login";
 import Register from "./components/pages/watch/register/Register";
 import Watch from "./components/pages/watch/watch";
 import { Movie } from "@mui/icons-material";
+import { useContext } from "react";
+import { AuthContext } from "../../admin/src/context/authContext/AuthContext";
 
 const App = () => {
-  const user = true;
+  const {user}=useContext(AuthContext);
   const router = createBrowserRouter([
     {
       path: "/",

@@ -1,7 +1,18 @@
 
+import { useSearchParams } from "react-router-dom";
 import "./login.scss";
+import { useContext, useState } from "react";
+import { login } from "../../../../authContext/apicalls";
+import { AuthContext } from "../../../../../../admin/src/context/authContext/AuthContext";
 
 export default function Login() {
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const {dispatch} = useContext(AuthContext)
+  const handleLogin =(e) =>{
+    e.preventDefault()
+    login({email,password}, dispatch)
+  }
  return (
     <div className="login">
       <div className="top">
@@ -17,9 +28,10 @@ export default function Login() {
       <div className="container">
         <form >
           <h1>Sign In</h1>
-          <input type="email" placeholder="Email or phone number" />
+          <input type="email" placeholder="Email or phone number" onChange={(e)=>setEmail(e.target.value)}/>
+          <input type="password" placeholder="password" onChange={(e)=>setPassword(e.target.value)}/>
           <input type="password" placeholder="Password" />
-          <button className="LoginButton">Sign In</button>
+          <button className="LoginButton" onClick={handleLogin}>Sign In</button>
           <span>New to Netflix?<b>Sign up now</b></span>
           <small>
             This page is protected by Google reCAPTCHA to ensure you're not a
