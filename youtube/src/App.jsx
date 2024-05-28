@@ -25,8 +25,8 @@ const App = () => {
     },
     {
       path: "/register",
-      element: <Register />,
-      loader: async () => (user ? redirect("/login") : null),
+      element: user !== "null" ? <Navigate to="/login"/> : <Register />,
+      loader: async () => (user !== "null" ? redirect("/login") : null),
     },
 
     {
@@ -52,7 +52,10 @@ const App = () => {
     },
   ]);
 
-  return <RouterProvider router={router} />;
+  return <>
+  {JSON.stringify(user)}
+  <RouterProvider router={router} />;
+  </>
 };
 
 export default App;

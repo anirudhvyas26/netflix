@@ -1,8 +1,10 @@
 import "./register.scss";
-import { useRef, useState, useEffect, useContext } from "react";
+import { useRef, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { register } from "../../../../authContext/apicalls";
+import { registerFailureUserExists } from "../../../../authContext/AuthActions" 
 import { AuthContext } from "../../../../authContext/AuthContext";
+import axios from 'axios';
 
 export default function Register() {
   const { user, dispatch } = useContext(AuthContext);
@@ -17,7 +19,6 @@ export default function Register() {
 
   const handleRegister = (e) => {
     e.preventDefault();
-    console.log("dispatch :>> ", dispatch);
     register({ email, username, password }, dispatch);
   };
 
@@ -27,27 +28,25 @@ export default function Register() {
 
   // const handleFinish = async (e) => {
   //   e.preventDefault();
-
   //   setPassword(passwordRef.current.value);
   //   setUsername(usernameRef.current.value);
+    
   //   try {
   //     const res = await axios.post("http://localhost:8800/api/auth/register", {
   //       email,
   //       username,
   //       password,
   //     });
+
+  //     // Dispatch success action or navigate to another page if necessary
   //   } catch (err) {
-  //     if (err.response.data.code == 11000) {
-  //       console.log(
-  //         "dispactching registerFailureUserExists",
-  //         err.response.data.keyValue.email
-  //       );
-  //       // dispatch(registerFailureUserExists(err.response.data.keyValue.email));
+  //     if (err.response.data.code === 11000) {
+  //       dispatch(registerFailureUserExists({user:err.response.data.keyValue.email}));
   //     }
-  //     console.log("123", err.response.data.code == 11000);
-  //     console.log(err);
+  //     console.error(err);
   //   }
   // };
+
   return (
     <div className="register">
       {JSON.stringify(user)}
@@ -72,25 +71,28 @@ export default function Register() {
           <input
             type="email"
             placeholder="email address"
+          
             onChange={(e) => setEmail(e.target.value)}
           />
-          <button className="registerbutton" onClick={handleRegister}>
+          <button className="registerButton">
             Get Started
           </button>
         </div>
 
-        <form className="input">
+        <form className="input" >
           <input
-            type="username"
+            type="text"
             placeholder="username"
+          
             onChange={(e) => setUsername(e.target.value)}
           />
           <input
             type="password"
             placeholder="password"
+
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button className="registerbutton" onClick={handleRegister}>
+          <button className="registerButton"  onClick={handleRegister}>
             Start
           </button>
         </form>

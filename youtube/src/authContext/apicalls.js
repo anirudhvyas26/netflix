@@ -24,7 +24,7 @@ export const register = async (user, dispatch) => {
 
     if (err.response?.data.code == 11000) {
       dispatch(
-        registerFailureUserExists({ email: err.response.data.keyValue.email })
+        registerFailureUserExists({ user: err.response.data.keyValue.email })
       );
 
     }
