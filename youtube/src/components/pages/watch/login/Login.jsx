@@ -1,3 +1,4 @@
+import { useSearchParams } from "react-router-dom";
 import "./login.scss";
 import { useContext, useState } from "react";
 import { login } from "../../../../authContext/apicalls";

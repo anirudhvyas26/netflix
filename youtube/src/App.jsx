@@ -52,7 +52,12 @@ const App = () => {
     },
   ]);
 
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      {JSON.stringify(user)}
+      <RouterProvider router={router} />;
+    </>
+  );
 };
 
 export default App;
