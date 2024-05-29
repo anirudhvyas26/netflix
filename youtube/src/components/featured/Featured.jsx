@@ -7,13 +7,17 @@ export default function Featured({ type, setGenre }) {
 
   useEffect(() => {
     const getRandomContent = async () => {
+      const accessToken = JSON.parse(localStorage.getItem("accessToken"));
+      console.log(accessToken);
       try {
-        const res = await axios.get(`http://localhost:8800/api/movies/random?type=${type}`, {
-          headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MThhNzRhOGM5OTM3MGI1M2E5MmJkYSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTcxNDIyNTgwMiwiZXhwIjoxNzE2ODE3ODAyfQ.UI20hmuaubbGujo1bKCJLKziEUzJX5GEkstQrsKHCxo"
-          },
-        });
+        const res = await axios.get(
+          `http://localhost:8800/api/movies/random?type=${type}`,
+          {
+            headers: {
+              Authorization: "Bearer " + accessToken,
+            },
+          }
+        );
         setContent(res.data[0]);
       } catch (err) {
         console.log(err);
@@ -21,13 +25,17 @@ export default function Featured({ type, setGenre }) {
     };
     getRandomContent();
   }, [type]);
-  console.log(content)
+  console.log(content);
   return (
     <div className="featured">
       {type && (
         <div className="category">
           <span>{type === "movies" ? "Movies" : "Series"}</span>
-          <select name="genre" id="genre" onChange={e=>setGenre(e.target.value)}>
+          <select
+            name="genre"
+            id="genre"
+            onChange={(e) => setGenre(e.target.value)}
+          >
             <option>Genre</option>
             <option value="adventure">Adventure</option>
             <option value="comedy">Comedy</option>
@@ -45,19 +53,10 @@ export default function Featured({ type, setGenre }) {
           </select>
         </div>
       )}
-      <img
-        width="100%"
-        src={content.img}
-        alt=""
-      />
+      <img width="100%" src={content.img} alt="" />
       <div className="info">
-        <img
-          src={content.imgTitle}
-          alt=" "
-        />
-        <span className="desc">
-         {content.desc}
-        </span>
+        <img src={content.imgTitle} alt=" " />
+        <span className="desc">{content.desc}</span>
         <div className="buttons">
           <button className="play">
             <PlayArrow />

@@ -2,12 +2,13 @@ import "./login.scss";
 import { useContext, useState } from "react";
 import { login } from "../../../../authContext/apicalls";
 import { AuthContext } from "../../../../authContext/AuthContext";
+import { Link } from "react-router-dom";
 
 export default function Login() {
   const { user, dispatch } = useContext(AuthContext);
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("anirudhvyas26@gmail.com");
+  const [password, setPassword] = useState("123456");
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -15,7 +16,7 @@ export default function Login() {
   };
   return (
     <div className="login">
-      {JSON.stringify(user)}
+      {/* {JSON.stringify(user)} */}
       <div className="top">
         <div className="wrapper">
           <img
@@ -31,19 +32,24 @@ export default function Login() {
           <input
             type="email"
             placeholder="Email or phone number"
+            value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
           <input
             type="password"
             placeholder="password"
+            value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <input type="password" placeholder="Password" />
+          <input type="password" placeholder="Password" value={password} />
           <button className="LoginButton" onClick={handleLogin}>
             Sign In
           </button>
           <span>
-            New to Netflix?<b>Sign up now</b>
+            New to Netflix?
+            <Link to="/register">
+              <b>Sign up now</b>
+            </Link>
           </span>
           <small>
             This page is protected by Google reCAPTCHA to ensure you're not a

@@ -16,7 +16,7 @@ import { useContext } from "react";
 import { AuthContext } from "./authContext/AuthContext";
 
 const App = () => {
-  const { user } = useContext(AuthContext);
+  const { user, error } = useContext(AuthContext);
   const router = createBrowserRouter([
     {
       path: "/",
@@ -25,14 +25,14 @@ const App = () => {
     },
     {
       path: "/register",
-      element: <Register />,
-      loader: async () => (user ? redirect("/login") : null),
+      element: user == "null" ? <Register /> : null,
+      loader: async () => (user !== "null" ? redirect("/") : null),
     },
 
     {
       path: "/login",
       element: user !== "null" ? <Navigate to="/" /> : <Login />,
-      // loader: async () => (!user ? redirect("/register") : null),
+      loader: async () => (user !== "null" ? redirect("/") : null),
     },
     {
       path: "/home",

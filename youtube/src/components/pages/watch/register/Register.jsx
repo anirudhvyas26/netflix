@@ -3,13 +3,14 @@ import { useRef, useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { register } from "../../../../authContext/apicalls";
 import { AuthContext } from "../../../../authContext/AuthContext";
+import { Link } from "react-router-dom";
 
 export default function Register() {
   const { user, dispatch } = useContext(AuthContext);
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("anirudhvyas26@gmail.com");
+  const [password, setPassword] = useState("123456");
+  const [username, setUsername] = useState("anirudh");
 
   // const emailRef = useRef();
   // const passwordRef = useRef();
@@ -72,6 +73,7 @@ export default function Register() {
           <input
             type="email"
             placeholder="email address"
+            value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
           <button className="registerbutton" onClick={handleRegister}>
@@ -83,17 +85,26 @@ export default function Register() {
           <input
             type="username"
             placeholder="username"
+            value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
           <input
             type="password"
             placeholder="password"
+            value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
           <button className="registerbutton" onClick={handleRegister}>
             Start
           </button>
         </form>
+        <br />
+        <div>
+          Already a member? &nbsp;
+          <Link to="/login">
+            <b>Log in</b>
+          </Link>
+        </div>
       </div>
     </div>
   );

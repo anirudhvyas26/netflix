@@ -1,5 +1,5 @@
 import axios from "axios";
-import { loginFailure, loginStart, loginSuccess, registerStart, registerFailureUserExists } from "./AuthActions";
+import { loginFailure, loginStart, loginSuccess, registerStart, registerFailureUserExists, registerSuccess } from "./AuthActions";
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 
@@ -19,13 +19,15 @@ export const register = async (user, dispatch) => {
   dispatch(registerStart());
 
   try {
-    await axios.post("http://localhost:8800/api/auth/register", user);
+    const res = await axios.post("http://localhost:8800/api/auth/register", user);
+
+    dispatch(registerSuccess(res.data));
   } catch (err) {
 
     if (err.response?.data.code == 11000) {
-      dispatch(
-        registerFailureUserExists({ email: err.response.data.keyValue.email })
-      );
+      // dispatch(
+      //   registerFailureUserExists(err.response.data.keyValue.email)
+      // );
 
     }
   }

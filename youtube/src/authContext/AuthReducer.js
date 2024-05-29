@@ -34,6 +34,12 @@ const AuthReducer = (state, action) => {
       return {
         user: action.payload,
         isFetching: false,
+        error: true,
+      };
+    case "REGISTER_SUCCESS":
+      return {
+        user: action.payload,
+        isFetching: false,
         error: false,
       };
 
