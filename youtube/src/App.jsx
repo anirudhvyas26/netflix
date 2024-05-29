@@ -54,7 +54,6 @@ const App = () => {
 
   return (
     <>
-      {JSON.stringify(user)}
       <RouterProvider router={router} />;
     </>
   );

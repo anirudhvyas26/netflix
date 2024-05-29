@@ -49,7 +49,6 @@ export default function Register() {
 
   return (
     <div className="register">
-      {JSON.stringify(user)}
       <div className="top">
         <div className="wrapper">
           <img

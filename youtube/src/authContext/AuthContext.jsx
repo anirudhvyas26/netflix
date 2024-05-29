@@ -28,7 +28,6 @@ export const AuthContextProvider = ({ children }) => {
         dispatch,
       }}
     >
-      {JSON.stringify(state)}
       {children}
     </AuthContext.Provider>
   );

@@ -7,8 +7,7 @@ export default function Featured({ type, setGenre }) {
 
   useEffect(() => {
     const getRandomContent = async () => {
-      const accessToken = JSON.parse(localStorage.getItem("accessToken"));
-      console.log(accessToken);
+      const { accessToken } = JSON.parse(localStorage.getItem("user"));
       try {
         const res = await axios.get(
           `http://localhost:8800/api/movies/random?type=${type}`,

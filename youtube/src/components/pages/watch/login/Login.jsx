@@ -17,7 +17,6 @@ export default function Login() {
   };
   return (
     <div className="login">
-      {/* {JSON.stringify(user)} */}
       <div className="top">
         <div className="wrapper">
           <img
