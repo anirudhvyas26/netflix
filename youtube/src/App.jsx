@@ -1,60 +1,40 @@
 import React from "react";
-import {
-  createBrowserRouter,
-  RouterProvider,
-  Route,
-  redirect,
-  Navigate,
-} from "react-router-dom";
+import { Route, useNavigate, Routes, Navigate } from "react-router-dom";
 import Home from "./home/Home";
 import "./app.scss";
 import Login from "./components/pages/watch/login/Login";
 import Register from "./components/pages/watch/register/Register";
 import Watch from "./components/pages/watch/Watch";
 import { Movie } from "@mui/icons-material";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { AuthContext } from "./authContext/AuthContext";
 
 const App = () => {
   const { user, error } = useContext(AuthContext);
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Home />,
-      loader: async () => (user == "null" ? redirect("/login") : null),
-    },
-    {
-      path: "/register",
-      element: user == "null" ? <Register /> : null,
-      loader: async () => (user !== "null" ? redirect("/") : null),
-    },
 
-    {
-      path: "/login",
-      element: user !== "null" ? <Navigate to="/" /> : <Login />,
-      loader: async () => (user !== "null" ? redirect("/") : null),
-    },
-    {
-      path: "/home",
-      element: <Home />,
-    },
-    {
-      path: "/watch",
-      element: <Watch />,
-    },
-    {
-      path: "/movies",
-      element: <Home type="movies" />,
-    },
-    {
-      path: "/series",
-      element: <Home type="series" />,
-    },
-  ]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user == null) {
+      navigate("/login");
+    }
+  }, [user]);
 
   return (
     <>
-      <RouterProvider router={router} />;
+      <Routes>
+        <Route path="/" element={user == null ? <Login /> : <Home />} />
+        <Route
+          path="/register"
+          element={user == null ? <Register /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/login"
+          element={user == null ? <Login /> : <Navigate to="/" />}
+        />
+        <Route path="/home" element={user == null ? <Login /> : <Home />} />
+        <Route path="/watch" element={user == null ? <Login /> : <Watch />} />
+      </Routes>
     </>
   );
 };
