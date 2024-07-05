@@ -11,8 +11,9 @@ export default function WidgetSm() {
           "http://localhost:8800/api/users?new=true",
           {
             headers: {
-              Authorization:
-                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MThhNzRhOGM5OTM3MGI1M2E5MmJkYSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTcxNTY5Mzc2NiwiZXhwIjoxNzE4Mjg1NzY2fQ.-PXbjC4GNjsRjjmO-ywIRsZSy7_MsCPiwQ6chxz7Agc",
+              authorization:
+                "Bearer " +
+                JSON.parse(localStorage.getItem("user")).accessToken,
             },
           }
         );
