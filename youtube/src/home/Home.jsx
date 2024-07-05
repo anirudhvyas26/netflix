@@ -11,7 +11,7 @@ const Home = ({ type }) => {
   useEffect(() => {
     const getRandomLists = async () => {
       const accessToken = localStorage.getItem("user")
-        ? JSON.parse(localStorage.getItem("user"))["accessToken"]
+        ? localStorage.getItem("user")["accessToken"]
         : null;
       try {
         const res = await axios.get(

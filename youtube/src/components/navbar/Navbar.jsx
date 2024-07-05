@@ -48,7 +48,7 @@ const Navbar = () => {
               <span
                 onClick={() => {
                   dispatch(logout());
-                  localStorage.clear();
+                  localStorage.setItem("user", null);
                 }}
               >
                 Logout
