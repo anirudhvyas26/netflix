@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, useNavigate, Routes, Navigate } from "react-router-dom";
+import { Route, useNavigate, Routes, Navigate, useLocation  } from "react-router-dom";
 import Home from "./home/Home";
 import "./app.scss";
 import Login from "./components/pages/watch/login/Login";
@@ -11,14 +11,15 @@ import { AuthContext } from "./authContext/AuthContext";
 
 const App = () => {
   const { user, error } = useContext(AuthContext);
-
+  
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
-    if (user == null) {
+    if (user == null && location.pathname !=="/register") {
       navigate("/login");
     }
-  }, [user]);
+  }, [user, location.pathname,navigate, ]);
 
   return (
     <>
@@ -38,5 +39,6 @@ const App = () => {
     </>
   );
 };
+
 
 export default App;
