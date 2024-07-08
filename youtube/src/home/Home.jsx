@@ -10,9 +10,9 @@ const Home = ({ type }) => {
   const [genre, setGenre] = useState(null);
   useEffect(() => {
     const getRandomLists = async () => {
-      const accessToken = localStorage.getItem("user")
-        ? JSON.parse(localStorage.getItem("user"))["accessToken"]
-        : null;
+      const { accessToken } = JSON.parse(localStorage.getItem("user"));
+
+      console.log(accessToken);
       try {
         const res = await axios.get(
           `http://localhost:8800/api/lists${type ? "?type=" + type : ""}${
