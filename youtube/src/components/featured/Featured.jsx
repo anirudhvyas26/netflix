@@ -7,7 +7,9 @@ export default function Featured({ type, setGenre }) {
 
   useEffect(() => {
     const getRandomContent = async () => {
-      const { accessToken } = JSON.parse(localStorage.getItem("user"));
+      const accessToken = localStorage.getItem("user")
+        ? JSON.parse(localStorage.getItem("user"))["accessToken"]
+        : null;
       try {
         const res = await axios.get(
           `http://localhost:8800/api/movies/random?type=${type}`,
@@ -24,7 +26,6 @@ export default function Featured({ type, setGenre }) {
     };
     getRandomContent();
   }, [type]);
-  console.log(content);
   return (
     <div className="featured">
       {type && (
