@@ -35,6 +35,8 @@ const App = () => {
         />
         <Route path="/home" element={user == null ? <Login /> : <Home />} />
         <Route path="/watch" element={user == null ? <Login /> : <Watch />} />
+        <Route path="/series" element={user == null ? <Login /> : <Home type="series" />}/>
+        <Route path="/movies" element={user == null ? <Login /> : <Home type="movies" />}/>
       </Routes>
     </>
   );
