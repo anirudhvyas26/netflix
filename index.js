@@ -6,7 +6,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 // mongoose
-//   .connect(process.env.MONGO_URL)
+//   .connect(env.MONGO_URL)
 //   .then((_) => {
 //     console.log("DB connection successful")
 
@@ -25,7 +25,7 @@ const userSchema = new Schema({
 const User = mongoose.model('User', userSchema);
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGO_URL, {
+mongoose.connect(env.MONGO_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
