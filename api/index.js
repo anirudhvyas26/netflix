@@ -13,7 +13,7 @@ const listRoute = require("./routes/lists");
 dotenv.config();
 
 mongoose
-.connect(env.MONGO_URL)
+.connect(process.env.MONGO_URL)
 .then(() => console.log("DB connection is successful"))
 .catch((err) => console.log(err));
 app.use(express.json());
