@@ -7,7 +7,7 @@ export const login = async (user, dispatch) => {
   dispatch(loginStart());
 
   try {
-    const res = await axios.post(`${process.env.BACKEND_URL}/api/auth/login`, user);
+    const res = await axios.post(`${process.env.BACKEND_URL}3/api3/auth/login`, user);
 
     dispatch(loginSuccess(res.data));
   } catch (err) {
