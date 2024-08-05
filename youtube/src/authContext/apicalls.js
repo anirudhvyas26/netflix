@@ -7,7 +7,7 @@ export const login = async (user, dispatch) => {
   dispatch(loginStart());
 
   try {
-    const res = await axios.post("http://localhost:8800/api/auth/login", user);
+    const res = await axios.post(`${process.env.BACKEND_URL}/api/auth/login`, user);
 
     dispatch(loginSuccess(res.data));
   } catch (err) {
@@ -19,7 +19,7 @@ export const register = async (user, dispatch) => {
   dispatch(registerStart());
 
   try {
-    const res = await axios.post("http://localhost:8800/api/auth/register", user);
+    const res = await axios.post(`${process.env.BACKEND_URL}/api/auth/register`, user);
 
     dispatch(registerSuccess(res.data));
   } catch (err) {
