@@ -20,7 +20,7 @@ export default function Listitem({ index, item }) {
       try {
         // With the proxy configured, you can simply make requests to paths starting with "/api"
         const res = await axios.get(
-          `${process.env.VITE_BACKEND_URL}/api/movies/find/` + item,
+          `${import.meta.env.VITE_BACKEND_URL}/api/movies/find/` + item,
           {
             headers: {
               Authorization: "Bearer " + accessToken,

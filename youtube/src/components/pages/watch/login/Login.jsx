@@ -57,7 +57,6 @@ export default function Login() {
           </small>
         </form>
       </div>
-      { JSON.stringify(env) }
     </div>
   );
 }
