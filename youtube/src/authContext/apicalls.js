@@ -8,8 +8,8 @@ export const login = async (user, dispatch) => {
   dispatch(loginStart());
 
   try {
-    const res = await axios.post(`${process.env.VITE_BACKEND_URL}/api/auth/login`, user);
-    console.log(process.env.VITE_BACKEND_URL,"process.env.VITE_BACKEND_URL");
+    const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/auth/login`, user);
+    console.log(import.meta.env.VITE_BACKEND_URL,"import.meta.env.VITE_BACKEND_URL");
 
     dispatch(loginSuccess(res.data));
   } catch (err) {
@@ -21,7 +21,7 @@ export const register = async (user, dispatch) => {
   dispatch(registerStart());
 
   try {
-    const res = await axios.post(`${process.env.VITE_BACKEND_URL}/api/auth/register`, user);
+    const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/auth/register`, user);
 
     dispatch(registerSuccess(res.data));
   } catch (err) {
