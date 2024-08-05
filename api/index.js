@@ -13,9 +13,9 @@ const listRoute = require("./routes/lists");
 dotenv.config();
 
 mongoose
-  .connect(env.MONGO_URL)
-  .then(() => console.log("DB connection is successful"))
-  .catch((err) => console.log(err));
+.connect(env.MONGO_URL)
+.then(() => console.log("DB connection is successful"))
+.catch((err) => console.log(err));
 app.use(express.json());
 app.use(cors());
 app.use("/api/check", checkRoute)
