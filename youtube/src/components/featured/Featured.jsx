@@ -12,7 +12,7 @@ export default function Featured({ type, setGenre }) {
         : null;
       try {
         const res = await axios.get(
-          `${env.VITE_BACKEND_URL}/api/movies/random?type=${type}`,
+          `${import.meta.env.VITE_BACKEND_URL}/api/movies/random?type=${type}`,
           {
             headers: {
               Authorization: "Bearer " + accessToken,
