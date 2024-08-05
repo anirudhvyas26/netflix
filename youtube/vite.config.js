@@ -8,14 +8,12 @@ export default defineConfig(({ command, mode }) => {
   return {
     plugins: [react()],
     define: {
-      "process.env": {
-        VITE_BACKEND_URL: env.VITE_BACKEND_URL
-      }
+      "process.env.VITE_BACKEND_URL": env.VITE_BACKEND_URL
     },
     server: {
       proxy: {
         "/api": {
-          target: process.env.VITE_BACKEND_URL,
+          target: env.VITE_BACKEND_URL,
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/api/, ""),
         },
