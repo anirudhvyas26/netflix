@@ -28,7 +28,7 @@ export default function Home() {
   useEffect(() => {
     const getStats = async () => {
       try {
-        const res = await axios.get(`${process.env.BACKEND_URL}/api/users/stats`, {
+        const res = await axios.get(`${process.env.VITE_BACKEND_URL}/api/users/stats`, {
           headers: {
             Authorization:
               "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MThhNzRhOGM5OTM3MGI1M2E5MmJkYSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTcxNDQ2NzAyNSwiZXhwIjoxNzE3MDU5MDI1fQ.2jrn3km7ydmA4Ao6gUGsLwjyg52XgtH17RARQ2EE_9A ",

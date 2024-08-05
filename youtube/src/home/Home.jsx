@@ -15,7 +15,7 @@ const Home = ({ type }) => {
       console.log(accessToken);
       try {
         const res = await axios.get(
-          `${process.env.BACKEND_URL}/api/lists${type ? "?type=" + type : ""}${
+          `${process.env.VITE_BACKEND_URL}/api/lists${type ? "?type=" + type : ""}${
             genre ? "&genre=" + genre : ""
           }`,
           {
