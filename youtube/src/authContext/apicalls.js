@@ -2,7 +2,7 @@ import axios from "axios";
 import { loginFailure, loginStart, loginSuccess, registerStart, registerFailureUserExists, registerSuccess } from "./AuthActions";
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
-
+import dotenv from "dotenv";
 
 export const login = async (user, dispatch) => {
   dispatch(loginStart());
