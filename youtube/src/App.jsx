@@ -8,6 +8,7 @@ import Watch from "./components/pages/watch/Watch";
 import { Movie } from "@mui/icons-material";
 import { useContext, useEffect } from "react";
 import { AuthContext } from "./authContext/AuthContext";
+import dotenv from "dotenv";
 
 const App = () => {
   const { user, error } = useContext(AuthContext);
