@@ -16,7 +16,7 @@ router.post("/register", async (req, res) => {
   });
   try {
     const user = await newUser.save();
-    console.log("user", user)
+
     res.status(201).json(user);
   } catch (err) {
     res.status(500).json(err);
@@ -26,28 +26,23 @@ router.post("/register", async (req, res) => {
 //LOGIN
 router.post("/login", async (req, res) => {
   try {
-    console.log(1)
     const user = await User.findOne({ email: req.body.email });
-    console.log(2)
     !user && res.status(401).json("wrong password or username!");
-    console.log(3)
     const bytes = CryptoJS.AES.decrypt(user.password, process.env.SECRET_KEY);
     const originalPassword = bytes.toString(CryptoJS.enc.Utf8);
-    console.log(4)
     originalPassword !== req.body.password &&
       res.status(401).json("Wrong password or username!");
-    console.log(5)
+
     const accessToken = jwt.sign(
       { id: user._id, isAdmin: user.isAdmin },
       process.env.SECRET_KEY,
       { expiresIn: "30d" }
     );
-    console.log(6)
+
     const { password, ...info } = user._doc;
-    console.log(7)
+
     res.status(200).json({ ...info, accessToken });
   } catch (err) {
-    console.log(8)
     res.status(500).json(err);
   }
 });
