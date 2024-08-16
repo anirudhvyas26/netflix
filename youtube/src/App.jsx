@@ -28,11 +28,11 @@ const App = () => {
         <Route path="/" element={user == null ? <Login /> : <Home />} />
         <Route
           path="/register"
-          element={user == null ? <Register /> : <Navigate to="/" />}
+          element={<Navigate to="/" />}
         />
         <Route
           path="/login"
-          element={user == null ? <Login /> : <Navigate to="/" />}
+          element={<Navigate to="/" />}
         />
         <Route path="/home" element={user == null ? <Login /> : <Home />} />
         <Route path="/watch" element={user == null ? <Login /> : <Watch />} />

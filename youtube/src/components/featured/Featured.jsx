@@ -2,8 +2,11 @@ import { InfoOutlined, PlayArrow } from "@mui/icons-material";
 import "./featured.scss";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 export default function Featured({ type, setGenre }) {
   const [content, setContent] = useState({});
+  const navigate = useNavigate(); // Use navigate for redirection
 
   useEffect(() => {
     const getRandomContent = async () => {
@@ -26,6 +29,11 @@ export default function Featured({ type, setGenre }) {
     };
     getRandomContent();
   }, [type]);
+
+  const handlePlayClick = () => {
+    navigate("/watch", { state: { movie: content } });
+  };
+
   return (
     <div className="featured">
       {type && (
@@ -59,7 +67,7 @@ export default function Featured({ type, setGenre }) {
         <h2 className="movie-title">{content.title}</h2>
         <span className="desc">{content.desc}</span>
         <div className="buttons">
-          <button className="play">
+          <button className="play" onClick={handlePlayClick}>
             <PlayArrow />
             <span>Play</span>
           </button>

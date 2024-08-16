@@ -30,11 +30,11 @@ const Navbar = () => {
           <Link to="/movies" className="link">
             <span className="navbarmainLinks">Movies</span>
           </Link>
-          <span>New and Popular</span>
-          <span>My List</span>
+          {/* <span>New and Popular</span> */}
+          {/* <span>My List</span> */}
         </div>
         <div className="right">
-          <Search className="icons" />
+          {/* <Search className="icons" /> */}
           <span>KID</span>
           <Notifications className="icons" />
           <img
