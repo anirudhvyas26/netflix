@@ -8,7 +8,6 @@ import Watch from "./components/pages/watch/Watch";
 import { Movie } from "@mui/icons-material";
 import { useContext, useEffect } from "react";
 import { AuthContext } from "./authContext/AuthContext";
-import dotenv from "dotenv";
 
 const App = () => {
   const { user, error } = useContext(AuthContext);
@@ -28,11 +27,11 @@ const App = () => {
         <Route path="/" element={user == null ? <Login /> : <Home />} />
         <Route
           path="/register"
-          element={<Navigate to="/" />}
+          element={user == null ? <Register /> : <Navigate to="/" />}
         />
         <Route
           path="/login"
-          element={<Navigate to="/" />}
+          element={user == null ? <Login /> : <Navigate to="/" />}
         />
         <Route path="/home" element={user == null ? <Login /> : <Home />} />
         <Route path="/watch" element={user == null ? <Login /> : <Watch />} />
